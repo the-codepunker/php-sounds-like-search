@@ -5,12 +5,20 @@
     private $searchAgainst = array();
     private $input;
 
+    /**
+    *@param $searchAgainst - an array of strings to match agains $input
+    *@param $input - the string for which the class finds the closest match in $searchAgainst
+    */
     public function __construct($searchAgainst, $input)
     {
       $this->searchAgainst = $searchAgainst;
       $this->input = $input;
     }
 
+    /**
+    *@param $phrase - string
+    *@return an array of metaphones for each word in a string
+    */
     private function getMetaPhone($phrase)
     {
       $metaphones = array();
@@ -21,6 +29,9 @@
       return $metaphones;
     }
 
+    /**
+    *@return the closest matching string found in $this->searchAgainst when compared to $this->input
+    */
     public function findBestMatch()
     {
       $foundbestmatch = -1;
@@ -52,4 +63,9 @@
     }
 
   }
-  
+
+  $input = "The quick brown fox jumped over the lazy dog";
+  $searchAgainst = array("The quick brown cat jumped over the lazy dog", "Thors hammer jumped over the lazy dog", "The quick brown fax jumped over the lazy dog");
+
+  $SoundsLike = new SoundsLike($searchAgainst, $input);
+  echo $SoundsLike->findBestMatch();
